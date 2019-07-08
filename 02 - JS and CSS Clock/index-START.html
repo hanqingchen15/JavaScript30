@@ -62,12 +62,71 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 500ms;
+      z-index: 1;
+    }
+
+    .min-hand {
+      width: 40%;
+      margin-left: 10%;
+      background: red;
+      z-index: 2;
+    }
+
+    .hour-hand {
+      width: 30%;
+      margin-left: 20%;
+      background: green;
+      z-index: 3;
+    }
+
+    .last-tick {
+      transition: all 0ms;
     }
 
   </style>
 
   <script>
+    const setDate = () => {
+      const date = new Date();
+      const seconds = date.getSeconds();
+      const minutes = date.getMinutes();
+      const hours = date.getHours();
 
+      const secondDeg = (90 + (6 * seconds)) % 360;
+      const minuteDeg = (90 + (6 * minutes)) % 360;
+      const hourDeg = (90 + (30 * (hours % 12))) % 360;
+
+      const secondHand = document.querySelector('.second-hand');
+      const minuteHand = document.querySelector('.min-hand');
+      const hourHand = document.querySelector('.hour-hand');
+
+      if (secondDeg == 0) {
+        secondHand.classList.add('last-tick')
+      } else if (secondDeg == 6) {
+        secondHand.classList.remove('last-tick')
+      }
+
+      if (minuteDeg == 0) {
+        minuteHand.classList.add('last-tick')
+      } else if (minuteDeg == 6) {
+        minuteHand.classList.remove('last-tick')
+      }
+
+      if (hourDeg == 0) {
+        hourhand.classList.add('last-tick')
+      } else if (hourDeg == 30) {
+        hourhand.classList.remove('last-tick')
+      }
+
+      secondHand.style.transform = `rotate(${secondDeg}deg)`;
+      minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+      hourHand.style.transform = `rotate(${hourDeg}deg)`;
+    }
+
+    setInterval(setDate, 1000);
 
   </script>
 </body>
