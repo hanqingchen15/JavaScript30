@@ -18,29 +18,58 @@
     }
 
     // Regular
+    console.log('hello world');
 
     // Interpolated
+    console.log('interpolation %s asdf', 'hehehe');
 
     // Styled
 
     // warning!
+    console.warn('warning!');
 
     // Error :|
+    console.error('error!');
 
     // Info
+    console.info('information booth here');
 
     // Testing
+    console.assert(1 === 2, 'wrong!');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`the dog is named ${dog.name}`);
+      console.log(`the dog is ${dog.age} years old`);
+      console.groupEnd();
+    })
 
     // counting
+    console.count('han');
+    console.count('han');
+    console.count('han');
+    console.count('han');
+    console.count('han');
+
 
     // timing
+    function timeEnding() {
+      console.timeEnd('setting timeout');
+    }
+    console.time('setting timeout');
+    setTimeout(timeEnding, 3000);
 
+
+    //table
+    console.table(dogs);
   </script>
 </body>
 </html>
